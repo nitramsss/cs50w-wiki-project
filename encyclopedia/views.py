@@ -60,7 +60,6 @@ def search(request):
         "message": "Page does not exist."
     })
     
-    
 
 def create_page(request):
     _form = Form()

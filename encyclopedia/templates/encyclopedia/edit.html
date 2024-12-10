@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block body %}
+    <div class="container form-container">
+        <div class="card shadow">
+            <h5 class="text-center mb-4">Edit Page</h5>
+            <form method="post" action="{% url 'editpage' entry %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.title.label_tag }}
+                    <input id="titlearea" type="text" name="title" value="{{ form.title.value }}" readonly>
+                </div>
+                <div class="mb-3">
+                    {{ form.content.label_tag }}
+                    {{ form.content|safe }}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

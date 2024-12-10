@@ -34,7 +34,7 @@ def index(request):
     })
 
 
-def entry_page(request, entry):
+def entry_page(request, entry):    
     if util.get_entry(entry):
         return render(request, "encyclopedia/entry.html", {
             "content": markdown(util.get_entry(entry)),
@@ -45,6 +45,22 @@ def entry_page(request, entry):
         return render(request, "encyclopedia/error.html", {
             "message": "Page does not exist."
         })
+
+
+def search(request):
+    entry = request.POST.get("q")
+    pages = util.list_entries()
+    for page in pages:
+        if entry.lower() in page.lower():
+            return render(request, "encyclopedia/entry.html", {
+            "content": markdown(util.get_entry(page)),
+            "title": page.title(),
+            "entry": page
+        })
+    return render(request, "encyclopedia/error.html", {
+        "message": "Page does not exist."
+    })
+    
     
 
 def create_page(request):

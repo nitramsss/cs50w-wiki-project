@@ -7,7 +7,6 @@ import random
 
 from . import util
 
-
 class Form(forms.Form):
     title = forms.CharField(
         label="Title",
@@ -101,7 +100,6 @@ def edit_page(request, page):
         "entry": page
     })
         
-
 
 def random_page(request):
     entries = util.list_entries()
